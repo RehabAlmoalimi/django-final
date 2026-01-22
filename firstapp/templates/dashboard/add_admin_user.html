@@ -1,0 +1,74 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block content %}
+<main class="content">
+    <div class="container-fluid p-0">
+        <div class="mb-3">
+            <h1 class="h3 d-inline align-middle">Add / Update Admin User</h1>
+        </div>
+
+        <form method="POST">
+            {% csrf_token %}
+            <div class="row">
+                <!-- Left Column -->
+                <div class="col-12 col-lg-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">Username</h5>
+                        </div>
+                        <div class="card-body">
+                            {{ form.username }}
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">Email</h5>
+                        </div>
+                        <div class="card-body">
+                            {{ form.email }}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column -->
+                <div class="col-12 col-lg-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">First Name</h5>
+                        </div>
+                        <div class="card-body">
+                            {{ form.first_name }}
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">Last Name</h5>
+                        </div>
+                        <div class="card-body">
+                            {{ form.last_name }}
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">Password</h5>
+                        </div>
+                        <div class="card-body">
+                            {{ form.password }}
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-body">
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</main>
+{% endblock content %}

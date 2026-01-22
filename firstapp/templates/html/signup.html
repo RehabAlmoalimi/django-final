@@ -1,0 +1,89 @@
+{% extends 'html/main.html' %}
+{% load static %}
+{% block content %}
+
+<section class="ftco-section ftco-services">
+  <div class="container">
+    <div class="row justify-content-center mb-5 pb-3">
+      <div class="col-md-7 heading-section text-center">
+        <h2 class="mb-3">Create Your Account</h2>
+        <p>Fill in the details below to sign up.</p>
+      </div>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card shadow-sm p-4 rounded">
+
+          <form method="POST" autocomplete="off">
+            {% csrf_token %}
+
+            
+            <div class="mb-4">
+              <label class="form-label fw-bold">Username</label>
+              {{ form.username }}
+              {% for error in form.username.errors %}
+                <small class="text-danger">{{ error }}</small>
+              {% endfor %}
+            </div>
+
+            
+            <div class="mb-4">
+              <label class="form-label fw-bold">Email</label>
+              {{ form.email }}
+              {% for error in form.email.errors %}
+                <small class="text-danger">{{ error }}</small>
+              {% endfor %}
+            </div>
+
+            
+            <div class="mb-4">
+              <label class="form-label fw-bold">Password</label>
+              {{ form.password1 }}
+              {% for error in form.password1.errors %}
+                <small class="text-danger">{{ error }}</small>
+              {% endfor %}
+            </div>
+
+            
+            <div class="mb-4">
+              <label class="form-label fw-bold">Confirm Password</label>
+              {{ form.password2 }}
+              {% for error in form.password2.errors %}
+                <small class="text-danger">{{ error }}</small>
+              {% endfor %}
+            </div>
+
+            
+            <div class="mb-4">
+              <label class="form-label fw-bold">Admin Key (Admins only)</label>
+              <input
+                type="password"
+                name="admin_key"
+                class="form-control border border-2 rounded py-2 px-3"
+                placeholder="Leave empty if not admin"
+                autocomplete="new-password"
+                spellcheck="false"
+              >
+            </div>
+
+            <div class="d-grid mt-4">
+              <button type="submit" class="btn btn-primary py-2">
+                Sign Up
+              </button>
+            </div>
+
+          </form>
+
+          <p class="mt-4 text-center">
+            Already have an account?
+            <a href="{% url 'login' %}">Login here</a>
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

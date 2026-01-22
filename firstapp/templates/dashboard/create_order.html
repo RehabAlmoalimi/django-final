@@ -1,0 +1,89 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block content %}
+<main class="content">
+    <form method="POST">
+        {% csrf_token %}
+        <div class="container-fluid p-0">
+
+            <div class="mb-3">
+                <h1 class="h3 d-inline align-middle">Create New Order</h1>
+            </div>
+
+            <div class="row">
+                <div class="col-12 col-lg-6">
+
+                    <!-- Customer Name -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">Customer Name</h5>
+                        </div>
+                        <div class="card-body">
+                            <input type="text" name="customer_name" value="{{ form.customer_name.value }}" class="form-control">
+                        </div>
+                    </div>
+
+                    <!-- Phone -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">Phone</h5>
+                        </div>
+                        <div class="card-body">
+                            <input type="text" name="phone" value="{{ form.phone.value }}" class="form-control">
+                        </div>
+                    </div>
+
+                    <!-- Address -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">Address</h5>
+                        </div>
+                        <div class="card-body">
+                            <textarea name="address" class="form-control">{{ form.address.value }}</textarea>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-12 col-lg-6">
+
+                    <!-- Status -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">Status</h5>
+                        </div>
+                        <div class="card-body">
+                            <select name="status" class="form-select">
+                                <option value="pending" {% if form.status.value == "pending" %}selected{% endif %}>Pending</option>
+                                <option value="confirmed" {% if form.status.value == "confirmed" %}selected{% endif %}>Confirmed</option>
+                                <option value="delivered" {% if form.status.value == "delivered" %}selected{% endif %}>Delivered</option>
+                                <option value="cancelled" {% if form.status.value == "cancelled" %}selected{% endif %}>Cancelled</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="card">
+    <div class="card-header">
+        <h5 class="card-title mb-0">Products</h5>
+    </div>
+    <div class="card-body">
+        {{ form.products }}
+    </div>
+</div>
+
+                    
+                    <!-- Submit Button -->
+                    <div class="card">
+                        <div class="card-body">
+                            <button type="submit" class="btn btn-primary">Create Order</button>
+                            <a href="{% url 'list_order' %}" class="btn btn-secondary">Back to Order List</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </form>
+</main>
+{% endblock content %}
